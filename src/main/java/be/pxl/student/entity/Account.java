@@ -8,6 +8,12 @@ public class Account {
     private String IBAN;
     private String name;
     private List<Payment> payments;
+    public Account(String IBAN, String name, List<Payment> payments){
+        this.setIBAN(IBAN);
+        this.setName(name);
+        this.payments = payments;
+
+    }
 
     public String getIBAN() {
         return IBAN;
