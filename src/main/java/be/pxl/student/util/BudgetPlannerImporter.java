@@ -32,10 +32,13 @@ public class BudgetPlannerImporter {
             LOGGER.error("File {} does not exist.",path);
             return;
         }
+        AccountMapper accountMapper = new AccountMapper();
         try(BufferedReader reader = Files.newBufferedReader(path)) {
             String line = null;
+            reader.readLine();
             while ((line = reader.readLine()) != null) {
-                System.out.println(line);
+                Account account  = accountMapper.map(line);
+                LOGGER.debug(account);
             }
         }catch(IOException e){
                 LOGGER.fatal("An error occured while reading file: {}",path);

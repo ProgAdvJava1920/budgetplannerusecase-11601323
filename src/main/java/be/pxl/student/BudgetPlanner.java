@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 
 public class BudgetPlanner {
     public static void main(String[] args) {
-        Path path = Paths.get("src/main/resources/account_payments.txt");
+        Path path = Paths.get("src/main/resources/account_payments.csv");
         new BudgetPlannerImporter().importCsv(path);
 
     }
