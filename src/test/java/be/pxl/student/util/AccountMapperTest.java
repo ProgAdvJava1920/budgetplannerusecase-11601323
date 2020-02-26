@@ -17,17 +17,22 @@ public class AccountMapperTest {
     @Test
     public void aValidLineIsMappedToAnAccount(){
         //act
-        Account result = accountMapper.map(validLine);
-        //assert
-        assertNotNull(result);
-        assertEquals("Jos",result.getName());
-        assertEquals("BE69771770897312",result.getIBAN());
-        assertEquals(1,result.getPayments().size());
-        Payment resultPayment = result.getPayments().get(0);
-        assertEquals(LocalDateTime.of(2020,2,13,5,47,35),resultPayment.getDate());
-        assertEquals("EUR",resultPayment.getCurrency());
-        assertEquals(265.8,resultPayment.getAmount());
-        assertEquals("Ut ut necessitatibus itaque ullam.",resultPayment.getDetail());
+        try {
+            Account result = accountMapper.map(validLine);
+            //assert
+            assertNotNull(result);
+            assertEquals("Jos", result.getName());
+            assertEquals("BE69771770897312", result.getIBAN());
+            assertEquals(1, result.getPayments().size());
+            Payment resultPayment = result.getPayments().get(0);
+            assertEquals(LocalDateTime.of(2020, 2, 13, 5, 47, 35), resultPayment.getDate());
+            assertEquals("EUR", resultPayment.getCurrency());
+            assertEquals(265.8, resultPayment.getAmount());
+            assertEquals("Ut ut necessitatibus itaque ullam.", resultPayment.getDetail());
+        }
+        catch (InvalidPaymentException e){
+            System.out.println(e.getMessage());
+        }
 
 
     }

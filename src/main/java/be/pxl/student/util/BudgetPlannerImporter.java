@@ -37,8 +37,14 @@ public class BudgetPlannerImporter {
             String line = null;
             reader.readLine();
             while ((line = reader.readLine()) != null) {
-                Account account  = accountMapper.map(line);
-                LOGGER.debug(account);
+                try{
+                    Account account  = accountMapper.map(line);
+                    LOGGER.debug(account);
+                }
+                catch(InvalidPaymentException e){
+                    LOGGER.error("Error while mapping line: {}",e.getMessage());
+                }
+
             }
         }catch(IOException e){
                 LOGGER.fatal("An error occured while reading file: {}",path);
